@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    public float moveSpeed = 200;
-    public float jumpForce = 10;
+    public float moveSpeed = 150;
+    public float jumpForce = 5;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -33,11 +33,9 @@ public class playerMovement : MonoBehaviour
     
     // Listens for player input
     void FixedUpdate(){
-        //Vector2 v = rb.velocity;
-        //v.y = jumpForce * moveSpeed;
-        //rb.velocity = v;
-
         rb.velocity = new Vector2(movement.x * moveSpeed * Time.deltaTime, rb.velocity.y);
+
+
     }
 
     // Update is called once per frame
@@ -57,7 +55,28 @@ public class playerMovement : MonoBehaviour
 
         movement = new Vector2(movementX, movementY);
 
+        if (Input.GetKeyDown("space")) // Have pressed space?
+        {
+            if (onGround)
+            {
+                Jump();
+                onGround = false;
+            }
+        }
+    }
 
-        
+    private void Jump()
+    {
+        Vector3 v = rb.velocity;
+        v.y = jumpForce;
+        rb.velocity = v;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground")) // I'm touching ground for first time
+        {
+            onGround = true;
+        }
     }
 }

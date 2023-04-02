@@ -8,6 +8,8 @@ public class playerMovement : MonoBehaviour
     public float jumpForce = 5;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Color newColor;
     private Vector2 movement;
     private float movementX;
     private float movementY;
@@ -28,6 +30,11 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D> ();
+        sr = GetComponent<SpriteRenderer> ();
+        
+        // Sets color to gray
+        newColor = new Color(0.59f, 0.59f, 0.59f, 1f); 
+        sr.color = newColor;
     }
 
     
@@ -61,6 +68,10 @@ public class playerMovement : MonoBehaviour
             {
                 Jump();
                 onGround = false;
+
+                // Sets color to gray
+                newColor = new Color(0.59f, 0.59f, 0.59f, 1f);
+                sr.color = newColor;
             }
         }
     }
@@ -76,6 +87,18 @@ public class playerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")) // I'm touching ground for first time
         {
+            newColor = new Color(0f, 0.69f, 1f, 1f); // Sets color to light blue
+            sr.color = newColor;
+            onGround = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Blue")) // I'm touching blue splotch
+        {
+            newColor = new Color(0f, 0.69f, 1f, 1f); // Sets color to light blue
+            sr.color = newColor;
             onGround = true;
         }
     }

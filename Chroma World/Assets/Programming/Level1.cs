@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Level1 : MonoBehaviour
 {
-    // Loads the "Level1" scene
+    // Loads the "movementTest" scene
     public void LoadScene()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("movementTest");
     }
 }

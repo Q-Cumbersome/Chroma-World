@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Blue
+  - Enemy
+  - RoomEnter
   layers:
   - Default
   - TransparentFX
@@ -40,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 743580177
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 2589022181
     locked: 0

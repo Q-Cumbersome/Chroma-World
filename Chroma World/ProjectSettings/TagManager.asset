@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Blue
+  - Enemy
+  - RoomEnter
   layers:
   - Default
   - TransparentFX

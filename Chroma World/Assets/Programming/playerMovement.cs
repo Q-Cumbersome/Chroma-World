@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    public enum eMode { idle, move }
     public float moveSpeed = 150;
     public float jumpForce = 5;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Animator anim;
     public GameObject cameraPos;
     public Transform respawnPoint;
     public RoomEnter renter;
@@ -19,7 +21,9 @@ public class playerMovement : MonoBehaviour
     private float movementY;
     private bool onGround = false;
 
-    //private int dirHeld = -1;
+    private int dirHeld = -1; // direction player is holding
+    private int facing = 1;   // direction player is facing
+    private eMode mode = eMode.idle;
 
     private Vector2[] directions = new Vector2[] {
         Vector2.right, Vector2.left
@@ -35,6 +39,7 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D> ();
         sr = GetComponent<SpriteRenderer> ();
+        //anim = GetComponent<Animator>();
         
         // Sets color to gray
         newColor = new Color(0.59f, 0.59f, 0.59f, 1f); 
@@ -53,13 +58,34 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         // May be useful for changing direction of sprites
-        /* dirHeld = -1;
+        dirHeld = -1;
         for (int i=0; i <keys.Length; i++) {
             if ( Input.GetKey(keys[i]) ) {
-                movementX = Input.GetAxisRaw ("Horizontal");
                 dirHeld = i % 2;
             }
-        } */
+        }
+
+        if (mode == eMode.idle || mode == eMode.move) {
+            // Choosing the proper movement or idle mode based on dirHeld
+            if (dirHeld == -1) {
+                mode = eMode.idle;
+            } else {
+                facing = dirHeld;
+                mode = eMode.move;
+            }
+        }
+
+        switch (mode) {
+        case eMode.idle:   // Show frame 1 in the correct direction
+            //anim.Play( "Paint_idle_" +facing );
+            //anim.speed = 0;
+            break;
+
+        case eMode.move:   // Play walking animation in the correct direction
+            //anim.Play( "Paint_move_" +facing );
+            //anim.speed = 1;
+            break;
+        }
 
         movementX = Input.GetAxisRaw ("Horizontal");
         movementY = Input.GetAxisRaw ("Vertical");

@@ -9,6 +9,10 @@ public class playerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    public GameObject cameraPos;
+    public Transform respawnPoint;
+    public RoomEnter renter;
+
     private Color newColor;
     private Vector2 movement;
     private float movementX;
@@ -91,6 +95,11 @@ public class playerMovement : MonoBehaviour
             sr.color = newColor;
             onGround = true;
         }
+
+        if (collision.gameObject.CompareTag("Enemy")) // I'm touching ground for first time
+        {
+            Respawn();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -101,5 +110,19 @@ public class playerMovement : MonoBehaviour
             sr.color = newColor;
             onGround = true;
         }
+
+        if(other.gameObject.CompareTag("RoomEnter"))
+        {
+            respawnPoint = other.GetComponent<RoomEnter>().setRespawnPos;
+            cameraPos.transform.position = other.GetComponent<RoomEnter>().setCameraPos.position;
+        }
+    }
+
+    void Respawn()
+    {
+        rb.velocity = Vector2.zero;
+        //rb.angularVelocity = Vector2.zero;
+        rb.Sleep();
+        transform.position = respawnPoint.position;
     }
 }

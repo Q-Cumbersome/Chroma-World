@@ -92,7 +92,7 @@ public class playerMovement : MonoBehaviour
 
         movement = new Vector2(movementX, movementY);
 
-        if (Input.GetKeyDown("space")) // Have pressed space?
+        if (Input.GetButtonDown("Jump")) // Have pressed space?
         {
             if (onGround)
             {

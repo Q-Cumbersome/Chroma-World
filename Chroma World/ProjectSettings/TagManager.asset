@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - RoomEnter
   - Flower
+  - Orange
   layers:
   - Default
   - TransparentFX

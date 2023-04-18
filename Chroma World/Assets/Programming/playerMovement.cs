@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
     public enum eMode { idle, move }
     public float moveSpeed = 150;
     public float jumpForce = 5;
+    public bool camFollow = false;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -107,6 +108,12 @@ public class playerMovement : MonoBehaviour
                 newColor = new Color(0.59f, 0.59f, 0.59f, 1f);
                 sr.color = newColor;
             }
+        }
+
+        // Camera following the player when needed.
+        if (camFollow == true)
+        {
+            cameraPos.transform.position = new Vector3(rb.position.x, cameraPos.transform.position.y, cameraPos.transform.position.z);
         }
     }
 

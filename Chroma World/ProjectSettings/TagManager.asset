@@ -8,6 +8,9 @@ TagManager:
   - Blue
   - Enemy
   - RoomEnter
+  - Target
+  - EnemyAttack
+  - Target2
   layers:
   - Default
   - TransparentFX

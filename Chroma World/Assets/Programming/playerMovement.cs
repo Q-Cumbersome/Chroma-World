@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class playerMovement : MonoBehaviour
     public GameObject cameraPos;
     public Transform respawnPoint;
     public RoomEnter renter;
+    public GameProgress progress;
+    public Flower flower;
 
     private Color newColor;
     private Vector2 movement;
@@ -141,6 +144,15 @@ public class playerMovement : MonoBehaviour
         {
             respawnPoint = other.GetComponent<RoomEnter>().setRespawnPos;
             cameraPos.transform.position = other.GetComponent<RoomEnter>().setCameraPos.position;
+        }
+
+        if(other.gameObject.CompareTag("Flower"))
+        {
+            // Sets the progress of level completion if the player has reached the end of either level 1 or level 2
+            GameProgress.progression1 = GameProgress.progression1 + other.GetComponent<Flower>().levelComplete1;
+            GameProgress.progression2 = GameProgress.progression2 + other.GetComponent<Flower>().levelComplete2;
+            
+            SceneManager.LoadScene("LevelSelect");            
         }
     }
 

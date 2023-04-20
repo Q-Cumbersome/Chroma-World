@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
     public enum eMode { idle, move }
     public float moveSpeed = 150;
     public float jumpForce = 5;
+    public bool camFollow = false;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -25,7 +26,7 @@ public class playerMovement : MonoBehaviour
     private bool onGround = false;
 
     private int dirHeld = -1; // direction player is holding
-    private int facing = 1;   // direction player is facing
+    private int facing = 0;   // direction player is facing
     private eMode mode = eMode.idle;
 
     private Vector2[] directions = new Vector2[] {
@@ -108,11 +109,12 @@ public class playerMovement : MonoBehaviour
                 sr.color = newColor;
             }
         }
-    }
 
-    private void UpdateAnimation()
-    {
-        
+        // Camera following the player when needed.
+        if (camFollow == true)
+        {
+            cameraPos.transform.position = new Vector3(rb.position.x, cameraPos.transform.position.y, cameraPos.transform.position.z);
+        }
     }
 
     private void Jump()
@@ -129,11 +131,15 @@ public class playerMovement : MonoBehaviour
             newColor = new Color(1f, 1f, 1f, 1f); // Sets color to light blue
             sr.color = newColor;
             onGround = true;
+
+            moveSpeed = 150f;
         }
 
         if (collision.gameObject.CompareTag("Enemy")) // I'm touching ground for first time
         {
             Respawn();
+
+            moveSpeed = 150f;
         }
     }
 
@@ -141,9 +147,17 @@ public class playerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Blue")) // I'm touching blue splotch
         {
-            newColor = new Color(1f, 1f, 1f, 1f); // Sets color to light blue
+            newColor = new Color(1f, 1f, 1f, 1f); // Sets color to normal
             sr.color = newColor;
             onGround = true;
+        }
+
+        if (other.gameObject.CompareTag("Orange")) // I'm touching orange splotch
+        {
+            newColor = new Color(1f, 0.5f, 0f, 1f);
+            sr.color = newColor;
+
+            moveSpeed = 300f;
         }
 
         if(other.gameObject.CompareTag("RoomEnter"))
@@ -154,6 +168,7 @@ public class playerMovement : MonoBehaviour
 
         if(other.gameObject.CompareTag("Flower"))
         {
+            moveSpeed = 150f;
             // Sets the progress of level completion if the player has reached the end of either level 1 or level 2
             GameProgress.progression1 = GameProgress.progression1 + other.GetComponent<Flower>().levelComplete1;
             GameProgress.progression2 = GameProgress.progression2 + other.GetComponent<Flower>().levelComplete2;

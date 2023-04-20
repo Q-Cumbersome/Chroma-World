@@ -42,10 +42,10 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D> ();
         sr = GetComponent<SpriteRenderer> ();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         
         // Sets color to gray
-        newColor = new Color(0.59f, 0.59f, 0.59f, 1f); 
+        newColor = new Color(0.50f, 0.50f, 0.50f, 1f); 
         sr.color = newColor;
     }
 
@@ -80,13 +80,14 @@ public class playerMovement : MonoBehaviour
 
         switch (mode) {
         case eMode.idle:   // Show frame 1 in the correct direction
-            //anim.Play( "Paint_idle_" +facing );
-            //anim.speed = 0;
+            anim.Play("painterWalk" + facing);
+            anim.speed = 0;
             break;
 
         case eMode.move:   // Play walking animation in the correct direction
-            //anim.Play( "Paint_move_" +facing );
-            //anim.speed = 1;
+            anim.Play("painterWalk" + facing);
+
+            anim.speed = 1;
             break;
         }
 
@@ -109,6 +110,11 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+    private void UpdateAnimation()
+    {
+        
+    }
+
     private void Jump()
     {
         Vector3 v = rb.velocity;
@@ -120,7 +126,7 @@ public class playerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")) // I'm touching ground for first time
         {
-            newColor = new Color(0f, 0.69f, 1f, 1f); // Sets color to light blue
+            newColor = new Color(1f, 1f, 1f, 1f); // Sets color to light blue
             sr.color = newColor;
             onGround = true;
         }
@@ -135,7 +141,7 @@ public class playerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Blue")) // I'm touching blue splotch
         {
-            newColor = new Color(0f, 0.69f, 1f, 1f); // Sets color to light blue
+            newColor = new Color(1f, 1f, 1f, 1f); // Sets color to light blue
             sr.color = newColor;
             onGround = true;
         }

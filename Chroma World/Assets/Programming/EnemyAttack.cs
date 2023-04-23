@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private float reloadSpeed;
-    public float startReloadSpeed;
-    
-    public Transform  target; // attach a target child object to the main enemy
-    public GameObject projectile;
+    public GameObject enemyAttackPrefab;
+    public Transform target;
 
-    void Start()
-    {
-        reloadSpeed = startReloadSpeed;
-    }
+    public float projectileSpeed;
+    public float fireRate;
+    public float fireTimer;
 
     void Update()
     {
-        if (reloadSpeed <= 0)
+        fireTimer += Time.deltaTime;
+
+        if (fireTimer >= fireRate)
         {
-            Instantiate(projectile, transform.position, Quaternion.identity);
-            reloadSpeed = startReloadSpeed;
-        }
-        else
-        {
-            reloadSpeed -= Time.deltaTime;
+            Vector3 direction = (target.position - transform.position).normalized;
+            GameObject enemyAttack = Instantiate(enemyAttackPrefab, transform.position, Quaternion.identity);
+            enemyAttack.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+
+            fireTimer = 0f;
         }
     }
 }
+
+

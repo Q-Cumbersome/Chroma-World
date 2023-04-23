@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 2196177375124738440}
   - component: {fileID: 2196177375124738443}
   m_Layer: 0
-  m_Name: ShootingEnemy1
+  m_Name: ShootingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 2196177375124738445}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 14.1, y: -1.65, z: 0.22604625}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 2196177374851992624}
   - {fileID: 2196177374557264215}

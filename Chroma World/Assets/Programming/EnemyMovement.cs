@@ -27,8 +27,7 @@ public class EnemyMovement : MonoBehaviour
         {
             var waypointPosition = waypoints[waypointIndex].transform.position;
             var enemyMovement = movementSpeed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards
-                (transform.position, waypointPosition, enemyMovement);
+            transform.position = Vector2.MoveTowards(transform.position, waypointPosition, enemyMovement);
 
             if (Vector2.Distance(transform.position, waypointPosition) < range)
             {

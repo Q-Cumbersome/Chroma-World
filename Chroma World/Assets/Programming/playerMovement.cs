@@ -164,6 +164,7 @@ public class playerMovement : MonoBehaviour
         {
             respawnPoint = other.GetComponent<RoomEnter>().setRespawnPos;
             cameraPos.transform.position = other.GetComponent<RoomEnter>().setCameraPos.position;
+            camFollow = other.GetComponent<RoomEnter>().changesCamera;
         }
 
         if(other.gameObject.CompareTag("Flower"))

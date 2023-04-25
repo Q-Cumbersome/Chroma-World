@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8281484075341873269}
   - component: {fileID: 5697105314142710450}
+  - component: {fileID: 3003684080228647739}
   m_Layer: 0
   m_Name: EnemyAttackSpawnPosition
   m_TagString: Untagged
@@ -38,7 +39,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548719942751372652}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -82,6 +83,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3003684080228647739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548719942751372652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4650aedc4f5884b1ab0ee37463058c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAttackPrefab: {fileID: 2266723507730232053, guid: 5d84bae26820e439aa7c923416b18151, type: 3}
+  target: {fileID: 1199287072693074885}
+  projectileSpeed: 5
+  fireRate: 2
+  fireTimer: 0
 --- !u!1 &2196177375124738445
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +111,6 @@ GameObject:
   - component: {fileID: 2196177375124738442}
   - component: {fileID: 2196177375124738454}
   - component: {fileID: 2196177375124738440}
-  - component: {fileID: 2196177375124738443}
   - component: {fileID: 7767163413701584969}
   m_Layer: 0
   m_Name: ShootingEnemy
@@ -190,23 +207,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2196177375124738443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2196177375124738445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4650aedc4f5884b1ab0ee37463058c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyAttackPrefab: {fileID: 2266723507730232053, guid: 5d84bae26820e439aa7c923416b18151, type: 3}
-  target: {fileID: 1199287072693074885}
-  projectileSpeed: 0
-  fireRate: 0
-  fireTimer: 0
 --- !u!68 &7767163413701584969
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2842514885120164708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2196177375124738442}
@@ -275,7 +275,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2842514885120164708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4765591572537832448}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 150
   jumpForce: 5
+  camFollow: 0
   cameraPos: {fileID: 8447277861521603641}
   respawnPoint: {fileID: 0}
   renter: {fileID: 0}
@@ -183,7 +184,7 @@ GameObject:
   - component: {fileID: 8084877283983772268}
   m_Layer: 0
   m_Name: playerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

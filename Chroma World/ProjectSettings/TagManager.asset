@@ -10,6 +10,8 @@ TagManager:
   - RoomEnter
   - Flower
   - Orange
+  - EnemyAttack
+  - Terrain
   layers:
   - Default
   - TransparentFX

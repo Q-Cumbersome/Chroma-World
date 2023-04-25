@@ -135,7 +135,7 @@ public class playerMovement : MonoBehaviour
             moveSpeed = 150f;
         }
 
-        if (collision.gameObject.CompareTag("Enemy")) // I'm touching ground for first time
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Respawn();
 
@@ -158,6 +158,13 @@ public class playerMovement : MonoBehaviour
             sr.color = newColor;
 
             moveSpeed = 300f;
+        }
+
+        if (other.gameObject.CompareTag("Enemy")) 
+        {
+            Respawn();
+
+            moveSpeed = 150f;
         }
 
         if(other.gameObject.CompareTag("RoomEnter"))

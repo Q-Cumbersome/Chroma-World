@@ -310,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setCameraPos: {fileID: 94675777210871701}
   setRespawnPos: {fileID: 8164309613240230441}
+  changesCamera: 0
 --- !u!1 &8247360259367491578
 GameObject:
   m_ObjectHideFlags: 0

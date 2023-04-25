@@ -14,6 +14,7 @@ public class playerMovement : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
     public GameObject cameraPos;
+    public GameObject winText;
     public Transform respawnPoint;
     public RoomEnter renter;
     public GameProgress progress;
@@ -135,7 +136,7 @@ public class playerMovement : MonoBehaviour
             moveSpeed = 150f;
         }
 
-        if (collision.gameObject.CompareTag("Enemy")) // I'm touching ground for first time
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Respawn();
 
@@ -160,10 +161,18 @@ public class playerMovement : MonoBehaviour
             moveSpeed = 300f;
         }
 
+        if (other.gameObject.CompareTag("Enemy")) 
+        {
+            Respawn();
+
+            moveSpeed = 150f;
+        }
+
         if(other.gameObject.CompareTag("RoomEnter"))
         {
             respawnPoint = other.GetComponent<RoomEnter>().setRespawnPos;
             cameraPos.transform.position = other.GetComponent<RoomEnter>().setCameraPos.position;
+            camFollow = other.GetComponent<RoomEnter>().changesCamera;
         }
 
         if(other.gameObject.CompareTag("Flower"))
@@ -174,6 +183,17 @@ public class playerMovement : MonoBehaviour
             GameProgress.progression2 = GameProgress.progression2 + other.GetComponent<Flower>().levelComplete2;
             
             SceneManager.LoadScene("LevelSelect");            
+        }
+
+        if(other.gameObject.CompareTag("Finish"))
+        {
+            moveSpeed = 150f;
+            // Sets the progress of level completion if the player has reached the end of either level 1 or level 2
+            GameProgress.progression1 = GameProgress.progression1 + other.GetComponent<Flower>().levelComplete1;
+            GameProgress.progression2 = GameProgress.progression2 + other.GetComponent<Flower>().levelComplete2;
+            
+            //SceneManager.LoadScene("LevelSelect");
+            winText.SetActive(true);            
         }
     }
 

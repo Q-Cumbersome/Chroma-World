@@ -6,4 +6,5 @@ public class RoomEnter : MonoBehaviour
 {
     public Transform setCameraPos;
     public Transform setRespawnPos;
+    public bool changesCamera;
 }
